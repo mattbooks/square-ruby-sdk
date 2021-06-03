@@ -6,10 +6,11 @@ module Square
   class FaradayClient < HttpClient
     # The constructor.
     def initialize(timeout:, max_retries:, retry_interval:,
-                   backoff_factor:, cache: false, verify: true)
+                   backoff_factor:, cache: false, verify: true, instrumenter: nil)
       @connection = Faraday.new do |faraday|
         faraday.use Faraday::HttpCache, serializer: Marshal if cache
         faraday.use FaradayMiddleware::FollowRedirects
+        faraday.use Instrumentation, instrumenter: instrumenter
         faraday.use :gzip
         faraday.request :multipart
         faraday.request :url_encoded
@@ -30,6 +31,9 @@ module Square
         http_request.query_url
       ) do |request|
         request.headers = http_request.headers
+        request.options.context = {
+          api_name: http_request.api_name
+        }
         unless http_request.http_method == HttpMethodEnum::GET &&
                http_request.parameters.empty?
           request.body = http_request.parameters

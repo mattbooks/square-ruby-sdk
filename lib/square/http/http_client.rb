@@ -29,9 +29,11 @@ module Square
     # @param [String] The URL to send the request to.
     # @param [Hash, Optional] The headers for the HTTP Request.
     def get(query_url,
+            api_name: nil,
             headers: {})
       HttpRequest.new(HttpMethodEnum::GET,
                       query_url,
+                      api_name: api_name,
                       headers: headers)
     end
 
@@ -39,9 +41,11 @@ module Square
     # @param [String] The URL to send the request to.
     # @param [Hash, Optional] The headers for the HTTP Request.
     def head(query_url,
+             api_name: nil,
              headers: {})
       HttpRequest.new(HttpMethodEnum::HEAD,
                       query_url,
+                      api_name: api_name,
                       headers: headers)
     end
 
@@ -50,11 +54,13 @@ module Square
     # @param [Hash, Optional] The headers for the HTTP Request.
     # @param [Hash, Optional] The parameters for the HTTP Request.
     def post(query_url,
+             api_name: nil,
              headers: {},
              parameters: {})
       HttpRequest.new(HttpMethodEnum::POST,
                       query_url,
                       headers: headers,
+                      api_name: api_name,
                       parameters: parameters)
     end
 
@@ -63,11 +69,13 @@ module Square
     # @param [Hash, Optional] The headers for the HTTP Request.
     # @param [Hash, Optional] The parameters for the HTTP Request.
     def put(query_url,
+            api_name: nil,
             headers: {},
             parameters: {})
       HttpRequest.new(HttpMethodEnum::PUT,
                       query_url,
                       headers: headers,
+                      api_name: api_name,
                       parameters: parameters)
     end
 
@@ -76,11 +84,13 @@ module Square
     # @param [Hash, Optional] The headers for the HTTP Request.
     # @param [Hash, Optional] The parameters for the HTTP Request.
     def patch(query_url,
+              api_name: nil,
               headers: {},
               parameters: {})
       HttpRequest.new(HttpMethodEnum::PATCH,
                       query_url,
                       headers: headers,
+                      api_name: api_name,
                       parameters: parameters)
     end
 
@@ -88,11 +98,13 @@ module Square
     # @param [String] The URL to send the request to.
     # @param [Hash, Optional] The headers for the HTTP Request.
     def delete(query_url,
+               api_name: nil,
                headers: {},
                parameters: {})
       HttpRequest.new(HttpMethodEnum::DELETE,
                       query_url,
                       headers: headers,
+                      api_name: api_name,
                       parameters: parameters)
     end
   end
