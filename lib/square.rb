@@ -19,6 +19,7 @@ require_relative 'square/http/http_method_enum.rb'
 require_relative 'square/http/http_request.rb'
 require_relative 'square/http/http_response.rb'
 require_relative 'square/http/auth/o_auth2.rb'
+require_relative 'square/http/instrumentation.rb'
 
 # Models
 

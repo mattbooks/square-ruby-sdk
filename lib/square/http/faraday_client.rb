@@ -10,7 +10,7 @@ module Square
       @connection = Faraday.new do |faraday|
         faraday.use Faraday::HttpCache, serializer: Marshal if cache
         faraday.use FaradayMiddleware::FollowRedirects
-        faraday.use Instrumentation, instrumenter: instrumenter
+        faraday.use Square::Instrumentation, instrumenter: instrumenter
         faraday.use :gzip
         faraday.request :multipart
         faraday.request :url_encoded
