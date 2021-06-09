@@ -34,9 +34,8 @@ module Square
         http_request.query_url
       ) do |request|
         request.headers = http_request.headers
-        request.options.context = {
-          api_name: http_request.api_name
-        }
+        request.options.context ||= {}
+        request.options.context.merge!(http_request.context)
         unless http_request.http_method == HttpMethodEnum::GET &&
                http_request.parameters.empty?
           request.body = http_request.parameters

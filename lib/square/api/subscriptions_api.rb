@@ -31,9 +31,12 @@ module Square
       # Prepare and execute HttpRequest.
       _request = config.http_client.post(
         _query_url,
-        api_name: 'create_subscription',
         headers: _headers,
-        parameters: body.to_json
+        parameters: body.to_json,
+        context: {
+          api_category: 'subscriptions',
+          api_name: 'create_subscription',
+        }
       )
       OAuth2.apply(config, _request)
       _response = execute_request(_request)
@@ -82,9 +85,12 @@ module Square
       # Prepare and execute HttpRequest.
       _request = config.http_client.post(
         _query_url,
-        api_name: 'search_subscriptions',
         headers: _headers,
-        parameters: body.to_json
+        parameters: body.to_json,
+        context: {
+          api_category: 'subscriptions',
+          api_name: 'search_subscriptions',
+        }
       )
       OAuth2.apply(config, _request)
       _response = execute_request(_request)
@@ -119,8 +125,11 @@ module Square
       # Prepare and execute HttpRequest.
       _request = config.http_client.get(
         _query_url,
-        api_name: 'retrieve_subscription',
-        headers: _headers
+        headers: _headers,
+        context: {
+          api_category: 'subscriptions',
+          api_name: 'retrieve_subscription',
+        }
       )
       OAuth2.apply(config, _request)
       _response = execute_request(_request)
@@ -161,9 +170,12 @@ module Square
       # Prepare and execute HttpRequest.
       _request = config.http_client.put(
         _query_url,
-        api_name: 'update_subscription',
         headers: _headers,
-        parameters: body.to_json
+        parameters: body.to_json,
+        context: {
+          api_category: 'subscriptions',
+          api_name: 'update_subscription',
+        }
       )
       OAuth2.apply(config, _request)
       _response = execute_request(_request)
@@ -199,8 +211,11 @@ module Square
       # Prepare and execute HttpRequest.
       _request = config.http_client.post(
         _query_url,
-        api_name: 'cancel_subscription',
-        headers: _headers
+        headers: _headers,
+        context: {
+          api_category: 'subscriptions',
+          api_name: 'cancel_subscription',
+        }
       )
       OAuth2.apply(config, _request)
       _response = execute_request(_request)
@@ -252,8 +267,11 @@ module Square
       # Prepare and execute HttpRequest.
       _request = config.http_client.get(
         _query_url,
-        api_name: 'list_subscription_events',
-        headers: _headers
+        headers: _headers,
+        context: {
+          api_category: 'subscriptions',
+          api_name: 'list_subscription_events',
+        }
       )
       OAuth2.apply(config, _request)
       _response = execute_request(_request)
@@ -288,8 +306,11 @@ module Square
       # Prepare and execute HttpRequest.
       _request = config.http_client.post(
         _query_url,
-        api_name: 'resume_subscription',
-        headers: _headers
+        headers: _headers,
+        context: {
+          api_category: 'subscriptions',
+          api_name: 'resume_subscription',
+        }
       )
       OAuth2.apply(config, _request)
       _response = execute_request(_request)
