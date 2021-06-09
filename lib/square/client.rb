@@ -201,7 +201,7 @@ module Square
                    backoff_factor: 1, environment: 'production',
                    custom_url: 'https://connect.squareup.com',
                    square_version: '2021-05-13', access_token: 'TODO: Replace',
-                   additional_headers: {}, config: nil, instrumenter: nil)
+                   additional_headers: {}, config: nil, instrumentation: false)
       @config = if config.nil?
                   Configuration.new(timeout: timeout, max_retries: max_retries,
                                     retry_interval: retry_interval,
@@ -211,7 +211,7 @@ module Square
                                     square_version: square_version,
                                     access_token: access_token,
                                     additional_headers: additional_headers,
-                                    instrumenter: instrumenter)
+                                    instrumentation: instrumentation)
                 else
                   config
                 end

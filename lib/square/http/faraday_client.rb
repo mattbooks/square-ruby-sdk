@@ -6,11 +6,14 @@ module Square
   class FaradayClient < HttpClient
     # The constructor.
     def initialize(timeout:, max_retries:, retry_interval:,
-                   backoff_factor:, cache: false, verify: true, instrumenter: nil)
+                   backoff_factor:, cache: false, verify: true,
+                   instrumentation: false)
       @connection = Faraday.new do |faraday|
         faraday.use Faraday::HttpCache, serializer: Marshal if cache
         faraday.use FaradayMiddleware::FollowRedirects
-        faraday.use Square::Instrumentation, instrumenter: instrumenter
+        if instrumentation
+          faraday.use FaradayMiddleware::Instrumentation, name: 'request.square-api'
+        end
         faraday.use :gzip
         faraday.request :multipart
         faraday.request :url_encoded

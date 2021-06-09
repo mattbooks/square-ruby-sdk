@@ -12,7 +12,7 @@ module Square
     attr_reader :custom_url
     attr_reader :square_version
     attr_reader :access_token
-    attr_reader :instrumenter
+    attr_reader :instrumentation
 
     def additional_headers
       @additional_headers.clone
@@ -26,7 +26,7 @@ module Square
                    backoff_factor: 1, environment: 'production',
                    custom_url: 'https://connect.squareup.com',
                    square_version: '2021-05-13', access_token: 'TODO: Replace',
-                   additional_headers: {}, instrumenter: nil)
+                   additional_headers: {}, instrumentation: false)
       # The value to use for connection timeout
       @timeout = timeout
 
@@ -55,7 +55,8 @@ module Square
       # Additional headers to add to each API request
       @additional_headers = additional_headers.clone
 
-      @instrumenter = instrumenter
+      # Enable request instrumentation
+      @instrumentation = instrumentation
 
       # The Http Client to use for making requests.
       @http_client = create_http_client
@@ -88,7 +89,7 @@ module Square
       FaradayClient.new(timeout: timeout, max_retries: max_retries,
                         retry_interval: retry_interval,
                         backoff_factor: backoff_factor,
-                        instrumenter: instrumenter)
+                        instrumentation: instrumentation)
     end
 
     # All the environments the SDK can run in.
